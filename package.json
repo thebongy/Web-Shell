@@ -1,0 +1,25 @@
+{
+  "name": "web-shell",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thebongy/Web-Shell.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thebongy/Web-Shell/issues"
+  },
+  "homepage": "https://github.com/thebongy/Web-Shell#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0",
+    "ssh2": "^0.8.5",
+    "xterm": "^4.1.0"
+  }
+}
