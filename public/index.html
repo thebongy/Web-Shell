@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web Shell Prototype</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/xterm.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body>
+
+    <div class="icon-bar">
+        <a class="Title">Web-Shell</a>
+        <a href="#" class="icon"><i class="fa fa-home"></i></a>
+        <a class="active" class="icon" href="#"><i class="fa fa-terminal"></i></a>
+    </div>
+              
+
+    <header>
+        <h1 class="title-text">WEB-SHELL</h1>
+    </header>
+
+    <div id="terminal"></div>
+    <script src="/static/xterm.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script>
+        var socket = io.connect('http://localhost:4242');
+        var term = new Terminal();
+        term.open(document.getElementById('terminal'));
+
+        term.onData((key) => {
+            send(key);
+        });
+
+        socket.on('output', function (data) {
+            term.write(data.stdout);
+        });
+
+
+        function send(key) {
+            console.log("Sensing key: ", key);
+            socket.emit('keyPress', { key: key });
+        }
+    </script>
+</body>
+
+</html>
