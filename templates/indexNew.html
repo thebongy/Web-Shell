@@ -6,29 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Web Shell Prototype</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/static/xterm.css">
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" href="/static/css/xterm.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
 </head>
 
 <body>
 
     <div class="icon-bar">
         <a class="Title">Web-Shell</a>
-        <a href="#" class="icon"><i class="fa fa-home"></i></a>
+        <a href="/" class="icon"><i class="fa fa-home"></i></a>
         <a class="active" class="icon" href="#"><i class="fa fa-terminal"></i></a>
     </div>
               
 
     <header>
-        <h1 class="title-text">WEB-SHELL</h1>
+        <h1 class="title-text">Connected to: <span style="color:#4CAF50">{{termName}}</span></h1>
     </header>
 
     <div id="terminal"></div>
-    <script src="/static/xterm.js"></script>
+    <script src="/static/js/xterm.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script>
         var socket = io.connect('http://localhost:4242');
-        var term = new Terminal();
+        var term = new Terminal({fontFamily: 'Arial' });
         term.open(document.getElementById('terminal'));
 
         term.onData((key) => {

@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Web Shell Prototype</title>
-    <link rel="stylesheet" href="/static/xterm.css">
+    <link rel="stylesheet" href="/static/css/xterm.css">
 </head>
 
 <body>
     <div id="terminal"></div>
-    <script src="/static/xterm.js"></script>
+    <script src="/static/js/xterm.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script>
         var socket = io.connect('http://localhost:4242');
-        var term = new Terminal();
+        var term = new Terminal({fontFamily:'Arial'});
         term.open(document.getElementById('terminal'));
 
         term.onData((key) => {

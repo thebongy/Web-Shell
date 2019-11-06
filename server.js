@@ -4,6 +4,7 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var path = require('path');
 var Client = require('ssh2').Client;
+var nunjucks = require('nunjucks');
 
 var shell;
 var conn = new Client();
@@ -29,10 +30,21 @@ conn.on('ready', function () {
 
 server.listen(4242);
 
-app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use('/static', express.static(path.join(__dirname, 'static')))
+app.engine('html', nunjucks.render);
+app.set('view engine', 'html');
+
+nunjucks.configure('templates', {
+    autoescape: true,
+    express: app,
+    watch: true
+});
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
+    res.render('menu');
+});
+app.get('/terminal/:terminalName', function (req, res) {
+    res.render('indexNew', {termName: req.params.terminalName});
 });
 
 io.on('connection', function (socket) {
