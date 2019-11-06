@@ -15,10 +15,20 @@
 <div class="list">
   <h2> Web-Shell Sessions</h2>
   <ul>
-    <li><a href="/terminal/kevinPC">Kevin's PC</a></li>
-    <li><a href="/terminal/rishitPC">Rishit's PC</a></li>
+    <li><a href="/terminal/kevinPC?auth=somuzusetrwweidvsrxaumgjwbebqjojlfbzwkphczewvhsxgrujjqewrpwgmjiy" onclick="return promptPassword('kevinPC', 1234)">Kevin's PC</a></li>
+    <li><a onclick= "return promptPassword('rishitPC', 4321)" href="/terminal/rishitPC?auth=uxukkizzdtlzpkaxcjwljhtphyufwxibnxwororpvkcexfdfsvdqeplhbtuxdouy">Rishit's PC</a></li>
   </ul>
 </div>
-
+<script>
+  function promptPassword(pc, pass) {
+    var check = prompt(`Enter password for ${pc}: `) == pass;
+    if (check) {
+      return true;
+    } else {
+      alert(`Password for ${pc} is incorrect!`);
+      return false;
+    }
+  }
+</script>
 </body>
 </html> 
